@@ -1,0 +1,9 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    always_specify_types: true
+    avoid_print: true
+    avoid_redundant_argument_values: true
+    prefer_const_constructors: true
+

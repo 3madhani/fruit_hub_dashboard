@@ -8,7 +8,8 @@ import '../../../../../core/utils/app_colors.dart';
 import 'remove_image_button.dart';
 
 class ImageField extends StatefulWidget {
-  const ImageField({super.key});
+  final ValueChanged<File?> onFileChanged;
+  const ImageField({super.key, required this.onFileChanged});
 
   @override
   State<ImageField> createState() => _ImageFieldState();
@@ -79,6 +80,7 @@ class _ImageFieldState extends State<ImageField> {
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       fileImage = File(image.path);
+      widget.onFileChanged(fileImage);
     }
   }
 }

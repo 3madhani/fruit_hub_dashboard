@@ -7,6 +7,14 @@ environment:
   sdk: ^3.7.2
 
 dependencies:
+  intl: ^0.19.0
+  get_it: ^8.0.3
+  flutter_svg: ^2.1.0
+  flutter_svg_provider: ^1.0.7
+  flutter_bloc: ^9.1.1
+  firebase_auth: ^5.5.3
+  cloud_firestore: ^5.6.7
+  dartz: ^0.10.1
   firebase_core: ^3.13.0
   flutter:
     sdk: flutter
@@ -19,7 +27,11 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/fonts/
+    - assets/svg/
 
   fonts:
     - family: Cairo
@@ -32,3 +44,15 @@ flutter:
           weight: 600
         - asset: assets/fonts/Cairo-Medium.ttf
           weight: 500
+
+
+flutter_assets:
+  assets_path:
+    - assets/svg/
+    - assets/images/
+  output_path: lib/core/utils
+  filename: app_assets.dart
+  field_prefix: null
+
+flutter_intl:
+  enabled: true

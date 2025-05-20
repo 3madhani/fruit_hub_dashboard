@@ -26,13 +26,22 @@ class CustomTextFormField extends StatelessWidget {
       onSaved: onSaved,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'الرجاء إدخال $hintText';
+          return 'Please enter $hintText';
         }
         return null;
       },
       keyboardType: keyboardType,
       style: AppTextStyles.semiBold16.copyWith(color: AppColors.primaryColor),
       decoration: InputDecoration(
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(4),
+          borderSide: const BorderSide(color: Colors.deepOrange, width: 2),
+        ),
+        errorStyle: AppTextStyles.semiBold13.copyWith(color: Colors.deepOrange),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(4),
+          borderSide: const BorderSide(color: Colors.deepOrange),
+        ),
         suffixIcon: suffixIcon,
         hintText: hintText,
         hintStyle: AppTextStyles.bold13.copyWith(

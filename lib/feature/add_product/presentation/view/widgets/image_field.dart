@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fruit_hub_dashboard/core/common/build_snack_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -29,7 +30,11 @@ class _ImageFieldState extends State<ImageField> {
           try {
             await pickImageFunc();
           } on Exception catch (e) {
-            // TODO
+            isLoading = false;
+            setState(() {});
+            if (mounted) {
+              BuildSnackBar.buildErrorSnackBar(context, e.toString());
+            }
           }
           isLoading = false;
           setState(() {});

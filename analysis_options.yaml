@@ -3,6 +3,4 @@ include: package:flutter_lints/flutter.yaml
 linter:
   rules:
     avoid_print: true
-    avoid_redundant_argument_values: true
     prefer_const_constructors: true
-

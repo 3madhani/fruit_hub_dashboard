@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub_dashboard/core/common/custom_button.dart';
 import 'package:fruit_hub_dashboard/core/common/custom_text_form_field.dart';
 import 'package:fruit_hub_dashboard/feature/add_product/domain/entities/product_entity.dart';
@@ -9,6 +10,7 @@ import 'package:fruit_hub_dashboard/feature/add_product/presentation/view/widget
 
 import '../../../../../core/common/build_snack_bar.dart';
 import '../../../../../core/constants/app_const.dart';
+import '../../cubit/add_product/add_product_cubit.dart';
 
 class AddProductViewBody extends StatefulWidget {
   const AddProductViewBody({super.key});
@@ -81,7 +83,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                 if (productImage != null) {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    ProductEntity(
+                    ProductEntity product = ProductEntity(
                       title: productName,
                       description: productDescription,
                       price: productPrice,
@@ -89,6 +91,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                       code: productCode,
                       isFeatured: isFeatured,
                     );
+                    context.read<AddProductCubit>().addProduct(product);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});

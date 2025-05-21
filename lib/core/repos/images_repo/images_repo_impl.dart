@@ -1,14 +1,27 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:fruit_hub_dashboard/core/utils/backend_endpoints.dart';
 
 import '../../errors/failure.dart';
+import '../../services/storage_services.dart';
 import 'images_repo.dart';
 
 class ImagesRepoImpl implements ImagesRepo {
+  final StorageServices storageServices;
+
+  ImagesRepoImpl({required this.storageServices});
   @override
   Future<Either<Failure, String>> uploadImage({required File image}) async {
-    // TODO: implement uploadImage
-    throw UnimplementedError();
+    try {
+      String url = await storageServices.uploadImageToStorage(
+        BackendEndpoints.imagePath,
+        image,
+      );
+
+      return Right(url);
+    } catch (e) {
+      return const Left(ServerFailure("Failed to upload image"));
+    }
   }
 }

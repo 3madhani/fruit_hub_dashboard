@@ -35,7 +35,6 @@ class ProductModel {
     'title': title,
     'description': description,
     'price': price,
-    'image': image.path,
     'code': code,
     'isFeatured': isFeatured,
     'imageUrl': imageUrl,

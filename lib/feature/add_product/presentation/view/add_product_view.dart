@@ -6,7 +6,7 @@ import 'package:fruit_hub_dashboard/feature/add_product/presentation/cubit/add_p
 import '../../../../core/common/custom_app_bar.dart';
 import '../../../../core/repos/images_repo/images_repo.dart';
 import '../../../../core/repos/products_repo/product_repo.dart';
-import 'widgets/add_product_view_body.dart';
+import 'widgets/add_product_view_body_bloc.dart';
 
 class AddProductView extends StatelessWidget {
   static const routeName = 'add-product';
@@ -18,11 +18,12 @@ class AddProductView extends StatelessWidget {
     return Scaffold(
       appBar: customAppBar(title: 'Add Product'),
       body: BlocProvider(
-        create: (context) => AddProductCubit(
-          productRepo: getIt.get<ProductRepo>(),
-          imagesRepo: getIt.get<ImagesRepo>(),
-        ),
-        child: const AddProductViewBody(),
+        create:
+            (context) => AddProductCubit(
+              productRepo: getIt.get<ProductRepo>(),
+              imagesRepo: getIt.get<ImagesRepo>(),
+            ),
+        child: const AddProductViewbodyBloc(),
       ),
     );
   }

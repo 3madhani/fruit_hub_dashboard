@@ -7,6 +7,7 @@ import 'package:fruit_hub_dashboard/core/common/custom_text_form_field.dart';
 import 'package:fruit_hub_dashboard/feature/add_product/domain/entities/product_entity.dart';
 import 'package:fruit_hub_dashboard/feature/add_product/presentation/view/widgets/image_field.dart';
 import 'package:fruit_hub_dashboard/feature/add_product/presentation/view/widgets/is_featured_check_box.dart';
+import 'package:fruit_hub_dashboard/feature/add_product/presentation/view/widgets/is_organic_check_box.dart';
 
 import '../../../../../core/common/build_snack_bar.dart';
 import '../../../../../core/constants/app_const.dart';
@@ -25,9 +26,9 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   late String productName, productCode, productDescription;
-  late num productPrice;
+  late num productPrice, expirationMonth, numberOfCalories, unitAmount;
   File? productImage;
-  bool isFeatured = false;
+  bool isFeatured = false, isOrganic = false;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -53,6 +54,24 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
             ),
             const SizedBox(height: 16),
             CustomTextFormField(
+              onSaved: (p0) => expirationMonth = num.parse(p0!),
+              hintText: 'Expiration Month',
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: 16),
+            CustomTextFormField(
+              onSaved: (p0) => numberOfCalories = num.parse(p0!),
+              hintText: 'Number of Calories',
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: 16),
+            CustomTextFormField(
+              onSaved: (p0) => unitAmount = num.parse(p0!),
+              hintText: 'Unit Amount',
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: 16),
+            CustomTextFormField(
               onSaved: (p0) => productCode = p0!.toLowerCase(),
               hintText: 'Product Code',
               keyboardType: TextInputType.text,
@@ -71,6 +90,9 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
               },
             ),
             const SizedBox(height: 16),
+            IsOrganicCheckBox(onChanged: (value) {
+              isOrganic = value;
+            }),
             ImageField(
               onFileChanged: (file) {
                 productImage = file;
@@ -84,12 +106,16 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     ProductEntity product = ProductEntity(
+                      isOrganic: isOrganic,
                       title: productName,
                       description: productDescription,
                       price: productPrice,
                       image: productImage!,
                       code: productCode,
                       isFeatured: isFeatured,
+                      expirationMonth: expirationMonth.toInt(),
+                      numberOfCalories: numberOfCalories.toInt(),
+                      unitAmount: unitAmount.toInt(),
                     );
                     context.read<AddProductCubit>().addProduct(product);
                   } else {

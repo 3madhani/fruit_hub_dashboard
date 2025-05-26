@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub_dashboard/core/common/custom_button.dart';
 import 'package:fruit_hub_dashboard/core/common/custom_text_form_field.dart';
 import 'package:fruit_hub_dashboard/feature/add_product/domain/entities/product_entity.dart';
+import 'package:fruit_hub_dashboard/feature/add_product/domain/entities/review_entity.dart';
 import 'package:fruit_hub_dashboard/feature/add_product/presentation/view/widgets/image_field.dart';
 import 'package:fruit_hub_dashboard/feature/add_product/presentation/view/widgets/is_featured_check_box.dart';
 import 'package:fruit_hub_dashboard/feature/add_product/presentation/view/widgets/is_organic_check_box.dart';
@@ -90,9 +91,12 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
               },
             ),
             const SizedBox(height: 16),
-            IsOrganicCheckBox(onChanged: (value) {
-              isOrganic = value;
-            }),
+            IsOrganicCheckBox(
+              onChanged: (value) {
+                isOrganic = value;
+              },
+            ),
+            const SizedBox(height: 16),
             ImageField(
               onFileChanged: (file) {
                 productImage = file;
@@ -106,6 +110,16 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     ProductEntity product = ProductEntity(
+                      reviews: [
+                        ReviewEntity(
+                          name: 'John Doe',
+                          image:
+                              "https://imgs.search.brave.com/YZUpa3k5P4yEll5WhbaxVBV2_jDTuzDl-tXHpH38k_A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vcWZEdlJT/R1RQT0NQNzU5Zkp4/SDZsYnNKTk5NTUZQ/NUhzUmZlejJyUHBi/MC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlz/YVhKdy9MbU5rYmkx/M1pXSnphWFJsL0xt/TnZiUzh6WXpjNVpX/SXgvTUM5a2JYTXpj/bVZ3TDIxMS9iSFJw/TDI5d2RDOUpUVUZI/L1JUSTBLM0JoYzNO/d2IzSjAvSzNkbFlp/dG5jbUZ3YUdsai9L/ekV6TURKd2VDMDRN/emcxL09EUXhZUzB4/T1RJd2R5NXEvY0dj.jpeg",
+                          date: DateTime.now().toIso8601String(),
+                          comment: 'This is a great product!',
+                          rating: 5.0,
+                        ),
+                      ],
                       isOrganic: isOrganic,
                       title: productName,
                       description: productDescription,
@@ -117,6 +131,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                       numberOfCalories: numberOfCalories.toInt(),
                       unitAmount: unitAmount.toInt(),
                     );
+                    print(product);
                     context.read<AddProductCubit>().addProduct(product);
                   } else {
                     autovalidateMode = AutovalidateMode.always;

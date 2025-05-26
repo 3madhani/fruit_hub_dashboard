@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:fruit_hub_dashboard/feature/add_product/data/models/review_model.dart';
+
 import '../../domain/entities/product_entity.dart';
 
 class ProductModel {
@@ -16,8 +18,10 @@ class ProductModel {
   final int unitAmount;
   final num averageRating = 0.0;
   final num numberOfReviews = 0;
+  final List<ReviewModel> reviews;
 
   ProductModel({
+    required this.reviews,
     this.isOrganic = false,
     required this.title,
     required this.description,
@@ -32,6 +36,7 @@ class ProductModel {
   });
 
   factory ProductModel.fromEntity(ProductEntity product) => ProductModel(
+    reviews: product.reviews.map((review) => ReviewModel.fromEntity(review)).toList(),
     title: product.title,
     description: product.description,
     price: product.price,
@@ -56,5 +61,6 @@ class ProductModel {
     'numberOfCalories': numberOfCalories,
     'unitAmount': unitAmount,
     'isOrganic': isOrganic,
+    'reviews': reviews.map((review) => review.toJson()).toList(),
   };
 }

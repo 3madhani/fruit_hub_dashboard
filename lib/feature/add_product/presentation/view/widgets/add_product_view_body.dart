@@ -131,7 +131,6 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                       numberOfCalories: numberOfCalories.toInt(),
                       unitAmount: unitAmount.toInt(),
                     );
-                    print(product);
                     context.read<AddProductCubit>().addProduct(product);
                   } else {
                     autovalidateMode = AutovalidateMode.always;

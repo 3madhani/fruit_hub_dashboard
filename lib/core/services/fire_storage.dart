@@ -9,8 +9,7 @@ class FireStorage implements StorageServices {
   @override
   Future<String> uploadImageToStorage(String path, File file) async {
     String fileName = p.basename(file.path);
-    String extensionName = p.extension(file.path);
-    var fileRef = storageReference.child("$path/$fileName.$extensionName");
+    var fileRef = storageReference.child("$path/$fileName");
 
     await fileRef.putFile(file);
 

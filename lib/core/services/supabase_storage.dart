@@ -11,15 +11,15 @@ class SupabaseStorage implements StorageServices {
 
   @override
   Future<String> uploadImageToStorage(String path, File file) async {
+    // Ensure the bucket exists
     String fileName = p.basename(file.path);
-    String extensionName = p.extension(file.path);
     var result = await _supabase.client.storage
         .from("fruits_images")
-        .upload("$path/$fileName.$extensionName", file);
+        .upload("$path/$fileName", file);
 
     final String imageUrl = _supabase.client.storage
         .from("fruits_images")
-        .getPublicUrl(result);
+        .getPublicUrl("$path/$fileName.");
 
     return imageUrl;
   }
@@ -28,8 +28,8 @@ class SupabaseStorage implements StorageServices {
     // Check if the bucket already exists
     final existingBuckets = await _supabase.client.storage.listBuckets();
 
-    if (existingBuckets.any((bucket) => bucket.name == bucketName)) {
-      return "Bucket '$bucketName' already exists.";
+    if (existingBuckets.any((bucket) => bucket.id == bucketName)) {
+      return;
     } else {
       await _supabase.client.storage.createBucket(
         bucketName,

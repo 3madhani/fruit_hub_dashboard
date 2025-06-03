@@ -18,9 +18,11 @@ class ProductModel {
   final int unitAmount;
   final num averageRating = 0.0;
   final num numberOfReviews = 0;
+  final int sellingCount;
   final List<ReviewModel> reviews;
 
   ProductModel({
+    this.sellingCount = 0,
     required this.reviews,
     this.isOrganic = false,
     required this.title,
@@ -36,7 +38,10 @@ class ProductModel {
   });
 
   factory ProductModel.fromEntity(ProductEntity product) => ProductModel(
-    reviews: product.reviews.map((review) => ReviewModel.fromEntity(review)).toList(),
+    reviews:
+        product.reviews
+            .map((review) => ReviewModel.fromEntity(review))
+            .toList(),
     title: product.title,
     description: product.description,
     price: product.price,
@@ -52,6 +57,7 @@ class ProductModel {
 
   Map<String, dynamic> toJson() => {
     'title': title,
+    'sellingCount': sellingCount,
     'description': description,
     'price': price,
     'code': code,

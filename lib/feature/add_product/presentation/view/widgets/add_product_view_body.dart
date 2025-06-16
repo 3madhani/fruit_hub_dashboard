@@ -10,7 +10,7 @@ import 'package:fruit_hub_dashboard/feature/add_product/presentation/view/widget
 import 'package:fruit_hub_dashboard/feature/add_product/presentation/view/widgets/is_featured_check_box.dart';
 import 'package:fruit_hub_dashboard/feature/add_product/presentation/view/widgets/is_organic_check_box.dart';
 
-import '../../../../../core/common/build_snack_bar.dart';
+import '../../../../../core/common/show_snack_bar.dart';
 import '../../../../../core/constants/app_const.dart';
 import '../../cubit/add_product/add_product_cubit.dart';
 
@@ -137,7 +137,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                     setState(() {});
                   }
                 } else {
-                  BuildSnackBar.buildErrorSnackBar(
+                  ShowCustomSnackBar.showErrorSnackBar(
                     context,
                     'Please select an image',
                   );

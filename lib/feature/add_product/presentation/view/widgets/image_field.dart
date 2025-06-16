@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:fruit_hub_dashboard/core/common/build_snack_bar.dart';
+import 'package:fruit_hub_dashboard/core/common/show_snack_bar.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/utils/app_colors.dart';
@@ -30,7 +30,7 @@ class _ImageFieldState extends State<ImageField> {
           isLoading = false;
           setState(() {});
           if (mounted) {
-            BuildSnackBar.buildErrorSnackBar(context, e.toString());
+            ShowCustomSnackBar.showErrorSnackBar(context, e.toString());
           }
         }
         isLoading = false;

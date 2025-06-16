@@ -13,7 +13,7 @@ class SupabaseStorage implements StorageServices {
   Future<String> uploadImageToStorage(String path, File file) async {
     // Ensure the bucket exists
     String fileName = p.basename(file.path);
-    var result = await _supabase.client.storage
+    await _supabase.client.storage
         .from("fruits_images")
         .upload("$path/$fileName", file);
 

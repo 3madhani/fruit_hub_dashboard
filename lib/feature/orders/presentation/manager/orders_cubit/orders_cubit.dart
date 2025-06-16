@@ -10,12 +10,14 @@ class OrdersCubit extends Cubit<OrdersState> {
   final OrdersRepo ordersRepo;
   OrdersCubit(this.ordersRepo) : super(OrderInitial());
 
-  Future<void> fetchOrders() async {
+  void fetchOrders() async {
     emit(OrdersLoading());
-    final result = await ordersRepo.fetchOrders();
-    result.fold(
-      (failure) => emit(OrdersError(message: failure.message)),
-      (orders) => emit(OrdersLoaded(orders: orders)),
-    );
+    ordersRepo.fetchOrders();
+    await for (var result in ordersRepo.fetchOrders()) {
+      result.fold(
+        (failure) => emit(OrdersError(message: failure.message)),
+        (orders) => emit(OrdersLoaded(orders: orders)),
+      );
+    }
   }
 }

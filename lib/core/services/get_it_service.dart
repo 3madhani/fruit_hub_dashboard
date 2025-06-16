@@ -1,12 +1,14 @@
-import 'package:fruit_hub_dashboard/core/repos/images_repo/images_repo.dart';
-import 'package:fruit_hub_dashboard/core/repos/images_repo/images_repo_impl.dart';
-import 'package:fruit_hub_dashboard/core/repos/products_repo/product_repo.dart';
-import 'package:fruit_hub_dashboard/core/repos/products_repo/product_repo_impl.dart';
-import 'package:fruit_hub_dashboard/core/services/database_services.dart';
-import 'package:fruit_hub_dashboard/core/services/firestore_services.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../feature/orders/data/repos/orders_repo_impl.dart';
+import '../../feature/orders/domain/repos/orders_repo.dart';
+import '../repos/images_repo/images_repo.dart';
+import '../repos/images_repo/images_repo_impl.dart';
+import '../repos/products_repo/product_repo.dart';
+import '../repos/products_repo/product_repo_impl.dart';
+import 'database_services.dart';
 import 'fire_storage.dart';
+import 'firestore_services.dart';
 import 'storage_services.dart';
 
 final getIt = GetIt.instance;
@@ -20,4 +22,8 @@ void setupGetIt() {
   getIt.registerSingleton<ProductRepo>(
     ProductRepoImpl(databaseServices: getIt.get<DatabaseServices>()),
   );
+
+  getIt.registerSingleton<OrdersRepo>(OrdersRepoImpl(
+    databaseServices: getIt.get<FireStoreServices>(),
+  ));
 }

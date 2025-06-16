@@ -9,7 +9,20 @@ import 'product_repo.dart';
 
 class ProductRepoImpl implements ProductRepo {
   final DatabaseServices databaseServices;
+  // final FirebaseFirestore firestore;
   ProductRepoImpl({required this.databaseServices});
+
+  // Future<bool> _productExistsByCode(String code) async {
+  //   final result =
+  //       await firestore
+  //           .collection(BackendEndpoints.productsPath)
+  //           .where('code', isEqualTo: code)
+  //           .limit(1)
+  //           .get();
+
+  //   return result.docs.isNotEmpty;
+  // }
+
   @override
   Future<Either<Failure, void>> addProduct(ProductEntity product) async {
     try {

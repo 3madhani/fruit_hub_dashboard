@@ -7,6 +7,7 @@ environment:
   sdk: ^3.7.2
 
 dependencies:
+  cached_network_image: ^3.4.1
   cloud_firestore: ^5.6.7
   dartz: ^0.10.1
   firebase_auth: ^5.5.3
@@ -22,6 +23,7 @@ dependencies:
   intl: ^0.19.0
   modal_progress_hud_nsn: ^0.5.1
   path: ^1.9.1
+  skeletonizer: ^2.0.1
   supabase_flutter: ^2.9.0
 
 dev_dependencies:

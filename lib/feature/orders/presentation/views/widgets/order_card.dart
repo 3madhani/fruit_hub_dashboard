@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
@@ -21,20 +22,19 @@ class OrderCard extends StatelessWidget {
             const _SectionTitle(title: 'Shipping Information'),
             _InfoRow(
               label: 'Name',
-              value: order.shippingAddressModel.name ?? '-',
+              value: order.shippingAddresseEtity.name ?? '-',
             ),
             _InfoRow(
               label: 'Phone',
-              value: order.shippingAddressModel.phone ?? '-',
+              value: order.shippingAddresseEtity.phone ?? '-',
             ),
             _InfoRow(
               label: 'Email',
-              value: order.shippingAddressModel.email ?? '-',
+              value: order.shippingAddresseEtity.email ?? '-',
             ),
             _InfoRow(
               label: 'Address',
-              value:
-                  '${order.shippingAddressModel.address}, ${order.shippingAddressModel.floor}, ${order.shippingAddressModel.city}',
+              value: order.shippingAddresseEtity.toString(),
             ),
             const SizedBox(height: 12),
 
@@ -55,12 +55,20 @@ class OrderCard extends StatelessWidget {
               value: '${order.totalPrice.toStringAsFixed(2)} EGP',
             ),
             _InfoRow(label: 'Payment Method', value: order.paymentMethod),
-            _InfoRow(label: 'Status', value: order.status),
             _InfoRow(
-              label: 'Date',
-              value:
-                  '${order.date.day}/${order.date.month}/${order.date.year} - ${order.date.hour}:${order.date.minute.toString().padLeft(2, '0')}',
+              label: 'Status',
+              value: order.status.name,
+              color:
+                  {
+                    'pending': AppColors.warningLightColor,
+                    'inProgress': AppColors.infoLightColor,
+                    'delivered': AppColors.successLightColor,
+                    'accepted': AppColors.primaryLightColor,
+                    'canceled': AppColors.errorColor,
+                  }[order.status.name] ??
+                  Colors.black,
             ),
+            _InfoRow(label: 'Date', value: order.getFormattedDate()),
           ],
         ),
       ),
@@ -71,7 +79,8 @@ class OrderCard extends StatelessWidget {
 class _InfoRow extends StatelessWidget {
   final String label;
   final String value;
-  const _InfoRow({required this.label, required this.value});
+  final Color? color;
+  const _InfoRow({required this.label, required this.value, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +90,17 @@ class _InfoRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(child: Text(label, style: AppTextStyles.medium14)),
-          Expanded(
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            decoration: BoxDecoration(
+              color: color ?? Colors.transparent,
+              borderRadius: BorderRadius.circular(8),
+            ),
             child: Text(
               value,
-              style: AppTextStyles.bold14,
+              style: AppTextStyles.bold14.copyWith(
+                color: color != null ? Colors.white : Colors.black,
+              ),
               textAlign: TextAlign.right,
             ),
           ),
@@ -117,20 +133,19 @@ class _ProductTile extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child:
-                imageUrl.isEmpty
-                    ? Image.network(
-                      'https://placehold.co/600x400',
-                      width: 50,
-                      height: 50,
-                      fit: BoxFit.cover,
-                    )
-                    : Image.network(
-                      imageUrl,
-                      width: 50,
-                      height: 50,
-                      fit: BoxFit.cover,
-                    ),
+            child: CachedNetworkImage(
+              fit: BoxFit.contain,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              placeholder:
+                  (context, url) => const SizedBox(
+                    height: 10,
+                    width: 10,
+                    child: CircularProgressIndicator(),
+                  ),
+              imageUrl: imageUrl,
+              height: 50,
+              width: 50,
+            ),
           ),
           const SizedBox(width: 10),
           Expanded(
@@ -140,13 +155,15 @@ class _ProductTile extends StatelessWidget {
                 Text(name, style: AppTextStyles.bold14),
                 const SizedBox(height: 2),
                 Text('Code: $code', style: AppTextStyles.medium12),
-                Text('Qty: $quantity', style: AppTextStyles.medium12),
+                Text('Qty: $quantity kg', style: AppTextStyles.medium12),
               ],
             ),
           ),
           Text(
             '${price.toStringAsFixed(2)} EGP',
-            style: AppTextStyles.bold14.copyWith(color: AppColors.primaryColor),
+            style: AppTextStyles.bold14.copyWith(
+              color: AppColors.primaryLightColor,
+            ),
           ),
         ],
       ),

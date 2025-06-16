@@ -39,7 +39,6 @@ class _ImageFieldState extends State<ImageField> {
       child: Stack(
         children: [
           Container(
-            height: 220,
             width: double.infinity,
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.primaryLightColor),

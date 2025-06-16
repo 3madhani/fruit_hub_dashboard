@@ -1,3 +1,4 @@
+import '../../../../core/enums/order_status.dart';
 import '../../domain/entities/order_entity.dart';
 import 'order_product_model.dart';
 import 'shipping_address_model.dart';
@@ -38,11 +39,11 @@ class OrderModel {
 
   OrderEntity toEntity() => OrderEntity(
     totalPrice: totalPrice,
-    shippingAddressModel: shippingAddressModel.toEntity(),
+    shippingAddresseEtity: shippingAddressModel.toEntity(),
     uid: uid,
     orderProducts: orderProducts.map((e) => e.toEntity()).toList(),
     paymentMethod: paymentMethod,
-    status: status,
+    status: OrderStatus.values.firstWhere((e) => e.name == status),
     date: date,
   );
 }

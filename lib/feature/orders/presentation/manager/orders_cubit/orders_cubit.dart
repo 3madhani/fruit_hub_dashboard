@@ -1,16 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub_dashboard/feature/orders/domain/repos/orders_repo.dart';
 
 import '../../../domain/entities/order_entity.dart';
 
-part 'order_state.dart';
+part 'orders_state.dart';
 
-class OrderCubit extends Cubit<OrderState> {
-
+class OrdersCubit extends Cubit<OrdersState> {
   final OrdersRepo ordersRepo;
-  OrderCubit(this.ordersRepo) : super(OrderInitial());
+  OrdersCubit(this.ordersRepo) : super(OrderInitial());
 
   Future<void> fetchOrders() async {
     emit(OrdersLoading());

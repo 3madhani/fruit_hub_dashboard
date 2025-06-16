@@ -18,8 +18,8 @@ class OrdersRepoImpl implements OrdersRepo {
       );
 
       List<OrderEntity> orders =
-          (data as List<Map<String, dynamic>>)
-              .map((e) => OrderModel.fromJson(e).toEntity())
+          (data as List<dynamic>)
+              .map<OrderEntity>((e) => OrderModel.fromJson(e).toEntity())
               .toList();
 
       return Right(orders);

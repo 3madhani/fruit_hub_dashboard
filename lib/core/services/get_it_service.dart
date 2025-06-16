@@ -23,7 +23,7 @@ void setupGetIt() {
     ProductRepoImpl(databaseServices: getIt.get<DatabaseServices>()),
   );
 
-  getIt.registerSingleton<OrdersRepo>(OrdersRepoImpl(
-    databaseServices: getIt.get<FireStoreServices>(),
-  ));
+  getIt.registerSingleton<OrdersRepo>(
+    OrdersRepoImpl(databaseServices: getIt.get<DatabaseServices>()),
+  );
 }

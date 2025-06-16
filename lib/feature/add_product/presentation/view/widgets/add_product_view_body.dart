@@ -112,11 +112,11 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                     ProductEntity product = ProductEntity(
                       reviews: [
                         ReviewEntity(
-                          name: 'John Doe',
+                          name: 'سارة',
                           image:
-                              "https://imgs.search.brave.com/YZUpa3k5P4yEll5WhbaxVBV2_jDTuzDl-tXHpH38k_A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vcWZEdlJT/R1RQT0NQNzU5Zkp4/SDZsYnNKTk5NTUZQ/NUhzUmZlejJyUHBi/MC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlz/YVhKdy9MbU5rYmkx/M1pXSnphWFJsL0xt/TnZiUzh6WXpjNVpX/SXgvTUM5a2JYTXpj/bVZ3TDIxMS9iSFJw/TDI5d2RDOUpUVUZI/L1JUSTBLM0JoYzNO/d2IzSjAvSzNkbFlp/dG5jbUZ3YUdsai9L/ekV6TURKd2VDMDRN/emcxL09EUXhZUzB4/T1RJd2R5NXEvY0dj.jpeg",
+                              "https://imgs.search.brave.com/oB7Ak67etRi_Ly1NApIiKr4VjhVC2ZehmrdxW0JsKo0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTEz/MTE2NDU0OC92ZWN0/b3IvYXZhdGFyLTUu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PUNLNDlTaExKd0R4/RTRraXJvQ1I0Mmtp/bVR1dWh2dW8yRkg1/eV82YVNnRW89",
                           date: DateTime.now().toIso8601String(),
-                          comment: 'This is a great product!',
+                          comment: 'طازج وكبير الحجم.',
                           rating: 5.0,
                         ),
                       ],

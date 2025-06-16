@@ -1,12 +1,13 @@
 import '../../feature/orders/domain/entities/order_entity.dart';
 import '../../feature/orders/domain/entities/order_product_entity.dart';
 import '../../feature/orders/domain/entities/shipping_address_entity.dart';
+import '../enums/order_status.dart';
 
 List<OrderEntity> getDummyOrders() {
   return [
     OrderEntity(
       totalPrice: 450.0,
-      shippingAddressModel: ShippingAddressEntity(
+      shippingAddresseEtity: ShippingAddressEntity(
         name: 'John Doe',
         phone: '01001234567',
         email: 'john@example.com',
@@ -34,12 +35,12 @@ List<OrderEntity> getDummyOrders() {
         ),
       ],
       paymentMethod: 'Cash',
-      status: 'pending',
+      status: OrderStatus.delivered,
       date: DateTime.now().subtract(const Duration(days: 1)),
     ),
     OrderEntity(
       totalPrice: 320.0,
-      shippingAddressModel: ShippingAddressEntity(
+      shippingAddresseEtity: ShippingAddressEntity(
         name: 'Sara Ahmed',
         phone: '01122334455',
         email: 'sara@example.com',
@@ -59,12 +60,12 @@ List<OrderEntity> getDummyOrders() {
         ),
       ],
       paymentMethod: 'PayPal',
-      status: 'delivered',
+      status: OrderStatus.canceled,
       date: DateTime.now().subtract(const Duration(days: 3)),
     ),
     OrderEntity(
       totalPrice: 200.0,
-      shippingAddressModel: ShippingAddressEntity(
+      shippingAddresseEtity: ShippingAddressEntity(
         name: 'Michael Nabil',
         phone: '01234567890',
         email: 'michael@example.com',
@@ -84,7 +85,7 @@ List<OrderEntity> getDummyOrders() {
         ),
       ],
       paymentMethod: 'Cash',
-      status: 'shipped',
+      status: OrderStatus.pending,
       date: DateTime.now().subtract(const Duration(days: 2)),
     ),
   ];

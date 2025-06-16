@@ -1,31 +1,18 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
-// import 'order_card.dart';
+import '../../../domain/entities/order_entity.dart';
+import 'order_card.dart';
 
-// class OrdersListView extends StatelessWidget {
-//   const OrdersListView({super.key});
+class OrdersListView extends StatelessWidget {
+  final List<OrderEntity> orders;
+  const OrdersListView({super.key, required this.orders});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocBuilder<OrdersCubit, OrdersState>(
-//       builder: (context, state) {
-//         if (state is OrdersLoading) {
-//           return const Center(child: CircularProgressIndicator());
-//         } else if (state is OrdersLoaded) {
-//           final orders = state.orders;
-//           return ListView.separated(
-//             padding: const EdgeInsets.all(16),
-//             itemCount: orders.length,
-//             separatorBuilder: (_, __) => const SizedBox(height: 16),
-//             itemBuilder: (context, index) => OrderCard(order: orders[index]),
-//           );
-//         } else if (state is OrdersError) {
-//           return Center(child: Text(state.message));
-//         } else {
-//           return const SizedBox();
-//         }
-//       },
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return SliverList.separated(
+      separatorBuilder: (_, __) => const SizedBox(height: 10),
+      itemCount: orders.length,
+      itemBuilder: (context, index) => OrderCard(order: orders[index]),
+    );
+  }
+}

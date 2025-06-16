@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/common/custom_button.dart';
 import '../../../../../core/constants/app_const.dart';
 import '../../../../add_product/presentation/view/add_product_view.dart';
+import '../../../../orders/presentation/views/order_view.dart';
 
 class DashboardViewBody extends StatelessWidget {
   const DashboardViewBody({super.key});
@@ -15,9 +16,21 @@ class DashboardViewBody extends StatelessWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [CustomPrimaryButton(title: 'Add Data', onPressed: () {
-          Navigator.pushNamed(context, AddProductView.routeName);
-        })],
+        children: [
+          CustomPrimaryButton(
+            title: 'Add Data',
+            onPressed: () {
+              Navigator.pushNamed(context, AddProductView.routeName);
+            },
+          ),
+          const SizedBox(height: 20),
+          CustomPrimaryButton(
+            title: 'View Orders',
+            onPressed: () {
+              Navigator.pushNamed(context, OrderView.routeName);
+            },
+          ),
+        ],
       ),
     );
   }

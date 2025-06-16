@@ -7,17 +7,16 @@ import 'package:fruit_hub_dashboard/firebase_options.dart';
 
 import 'core/helper/on_generate_route.dart';
 import 'core/services/custom_bloc_observer.dart';
-import 'core/services/supabase_storage.dart';
 import 'core/utils/app_colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize Supabase
-  await SupabaseStorage.initSupabase();
+  // await SupabaseStorage.initSupabase();
 
   // Create Supabase bucket
-  await SupabaseStorage.createBucket("fruits_images");
+  // await SupabaseStorage.createBucket("fruits_images");
   // Bloc Observer
   Bloc.observer = CustomBlocObserver();
   // Initialize Firebase

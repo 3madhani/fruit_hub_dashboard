@@ -11,8 +11,10 @@ class OrderEntity {
   final String paymentMethod;
   final OrderStatus status;
   final DateTime date;
+  final String orderId;
 
   OrderEntity({
+    required this.orderId,
     required this.totalPrice,
     required this.shippingAddresseEtity,
     required this.uid,

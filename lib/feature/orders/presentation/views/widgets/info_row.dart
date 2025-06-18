@@ -22,12 +22,14 @@ class InfoRow extends StatelessWidget {
         children: [
           Expanded(child: Text(label, style: AppTextStyles.medium14)),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
             decoration: BoxDecoration(
               color: color ?? Colors.transparent,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               value,
               style: AppTextStyles.bold14.copyWith(
                 color: color != null ? Colors.white : Colors.black,

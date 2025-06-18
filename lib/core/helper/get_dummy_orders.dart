@@ -6,6 +6,7 @@ import '../enums/order_status.dart';
 List<OrderEntity> getDummyOrders() {
   return [
     OrderEntity(
+      orderId: 'order_123',
       totalPrice: 450.0,
       shippingAddresseEtity: ShippingAddressEntity(
         name: 'John Doe',
@@ -39,6 +40,7 @@ List<OrderEntity> getDummyOrders() {
       date: DateTime.now().subtract(const Duration(days: 1)),
     ),
     OrderEntity(
+      orderId: 'ord_789',
       totalPrice: 320.0,
       shippingAddresseEtity: ShippingAddressEntity(
         name: 'Sara Ahmed',
@@ -64,6 +66,7 @@ List<OrderEntity> getDummyOrders() {
       date: DateTime.now().subtract(const Duration(days: 3)),
     ),
     OrderEntity(
+      orderId: 'order_567',
       totalPrice: 200.0,
       shippingAddresseEtity: ShippingAddressEntity(
         name: 'Michael Nabil',

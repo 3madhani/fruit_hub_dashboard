@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../domain/entities/order_entity.dart';
 import 'info_row.dart';
+import 'order_action_button.dart';
 import 'product_title.dart';
 import 'section_title.dart';
 
@@ -37,6 +38,7 @@ class OrderCard extends StatelessWidget {
               label: 'Address',
               value: order.shippingAddresseEtity.toString(),
             ),
+            InfoRow(label: "Order ID", value: order.orderId),
             const SizedBox(height: 12),
 
             const SectionTitle(title: 'Products'),
@@ -70,6 +72,8 @@ class OrderCard extends StatelessWidget {
                   Colors.black,
             ),
             InfoRow(label: 'Date', value: order.getFormattedDate()),
+            const Divider(height: 24),
+            OrderActionButton(orderEntity: order),
           ],
         ),
       ),

@@ -28,9 +28,9 @@ class OrdersRepoImpl implements OrdersRepo {
   }
 
   @override
-  Future<Either<Failure, void>> updateOrderStatus({required OrderStatus status, required String orderId}) async {
+  Future<Either<Failure, void>> updateOrderStatus({required OrderStatus status, required String orderId, required String date}) async {
     try {
-      await databaseServices.updateData(path: BackendEndpoints.updateOrders, data: {"status": status.name}, documentId: orderId);
+      await databaseServices.updateData(path: BackendEndpoints.updateOrders, data: {"status": status.name, "date": date}, documentId: orderId);
       return const Right(null);
     } catch (e) {
       return const Left(ServerFailure("Failed to update order status"));

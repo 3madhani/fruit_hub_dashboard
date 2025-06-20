@@ -1,1 +1,1 @@
-enum OrderStatus { pending, inProgress, delivered, accepted, canceled }
+enum OrderStatus { pending, inProgress, delivered, accepted, canceled, outForDelivery }

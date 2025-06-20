@@ -68,6 +68,7 @@ class OrderCard extends StatelessWidget {
                     'delivered': AppColors.successLightColor,
                     'accepted': AppColors.primaryLightColor,
                     'canceled': AppColors.errorColor,
+                    'outForDelivery': Colors.orange.shade300,
                   }[order.status.name] ??
                   Colors.black,
             ),

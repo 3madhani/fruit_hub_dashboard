@@ -28,6 +28,7 @@ class OrderActionButton extends StatelessWidget {
               context.read<UpdateOrderStatusCubit>().updateOrderStatus(
                 status: OrderStatus.accepted,
                 orderId: orderEntity.orderId,
+                date: DateTime.now().toString(),
               );
             },
           ),
@@ -41,6 +42,7 @@ class OrderActionButton extends StatelessWidget {
               context.read<UpdateOrderStatusCubit>().updateOrderStatus(
                 status: OrderStatus.canceled,
                 orderId: orderEntity.orderId,
+                date: DateTime.now().toString(),
               );
             },
           ),
@@ -54,19 +56,36 @@ class OrderActionButton extends StatelessWidget {
               context.read<UpdateOrderStatusCubit>().updateOrderStatus(
                 status: OrderStatus.inProgress,
                 orderId: orderEntity.orderId,
+                date: DateTime.now().toString(),
               );
             },
           ),
           _buildActionButton(
             context: context,
+            label: 'Out For Delivery',
+            icon: Icons.settings,
+            isEnabled: status == OrderStatus.inProgress,
+            activeColor: Colors.orange.shade300,
+            onPressed: () {
+              context.read<UpdateOrderStatusCubit>().updateOrderStatus(
+                status: OrderStatus.outForDelivery,
+                orderId: orderEntity.orderId,
+                date: DateTime.now().toString(),
+              );
+            },
+          ),
+
+          _buildActionButton(
+            context: context,
             label: 'Delivered',
             icon: Icons.local_shipping,
-            isEnabled: status == OrderStatus.inProgress,
+            isEnabled: status == OrderStatus.outForDelivery,
             activeColor: AppColors.successLightColor,
             onPressed: () {
               context.read<UpdateOrderStatusCubit>().updateOrderStatus(
                 status: OrderStatus.delivered,
                 orderId: orderEntity.orderId,
+                date: DateTime.now().toString(),
               );
             },
           ),

@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub_dashboard/core/services/get_it_service.dart';
-import 'package:fruit_hub_dashboard/feature/dashboard/presentation/views/dashboard_view.dart';
+import 'package:fruit_hub_dashboard/feature/splash/presentation/views/splash_view.dart';
 import 'package:fruit_hub_dashboard/firebase_options.dart';
 
 import 'core/helper/on_generate_route.dart';
@@ -40,7 +40,7 @@ class MainApp extends StatelessWidget {
       ),
       onGenerateRoute: onGenerateRoute,
       debugShowCheckedModeBanner: false,
-      initialRoute: DashboardView.routeName,
+      initialRoute: SplashView.routeName,
     );
   }
 }
